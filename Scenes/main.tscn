@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://xkf65ftquclq"]
+
+[ext_resource type="Script" uid="uid://e3ulwup3tcmp" path="res://Scripts/Main.cs" id="1_75buv"]
+[ext_resource type="Texture2D" uid="uid://y6jjlce0s6uv" path="res://Assets/Environments/Jungle/Layers/back.png" id="1_f6udf"]
+[ext_resource type="Texture2D" uid="uid://d1gsxl1xr55a1" path="res://Assets/Environments/SunnyLand/Props/tree.png" id="2_sblpm"]
+[ext_resource type="Texture2D" uid="uid://c24fpm0772851" path="res://Assets/Environments/Jungle/Layers/tileset.png" id="3_r34rm"]
+[ext_resource type="Texture2D" uid="uid://bmaewegx72wy8" path="res://Assets/Environments/SunnyLand/Props/bush.png" id="4_2wwxx"]
+[ext_resource type="Texture2D" uid="uid://dda3vv8ylwqrk" path="res://Assets/Characters/Players/Squirrel/run/spritesheets.png" id="5_3amdw"]
+[ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="6_ow1sv"]
+[ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="7_ow1sv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xcnr"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(0, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow1sv"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(90, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75buv"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(180, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2iwn"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(270, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pt4j"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(360, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y4ci"]
+atlas = ExtResource("5_3amdw")
+region = Rect2(450, 0, 90, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxd2g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xcnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow1sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75buv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2iwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pt4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7y4ci")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="main" type="Control" unique_id=187888934]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75buv")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=2014007804]
+repeat_size = Vector2(225, 0)
+autoscroll = Vector2(-50, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=62221401]
+position = Vector2(214, 0)
+scale = Vector2(2.0089285, 2.6999998)
+texture = ExtResource("1_f6udf")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1238027106]
+repeat_size = Vector2(450, 0)
+autoscroll = Vector2(-70, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=32154005]
+position = Vector2(-172, -110.99994)
+scale = Vector2(3.7750065, 5.1351347)
+texture = ExtResource("2_sblpm")
+centered = false
+
+[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=1127655469]
+repeat_size = Vector2(81, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 24
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=1680121561]
+position = Vector2(521, 427)
+scale = Vector2(1.6875, 2.0156252)
+texture = ExtResource("3_r34rm")
+centered = false
+
+[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=1755485363]
+repeat_size = Vector2(225, 0)
+autoscroll = Vector2(-125, 0)
+repeat_times = 7
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=364994640]
+position = Vector2(297, 450)
+scale = Vector2(5.73913, 7.041429)
+texture = ExtResource("4_2wwxx")
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1893395906]
+position = Vector2(570, 379)
+scale = Vector2(3.855, 3.855)
+sprite_frames = SubResource("SpriteFrames_mxd2g")
+autoplay = "default"
+frame_progress = 0.2706555
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1896311562]
+layout_mode = 0
+offset_left = -201.0
+offset_top = 113.0
+offset_right = -184.96805
+offset_bottom = 130.70691
+scale = Vector2(21.644268, 3.7273579)
+texture_normal = ExtResource("7_ow1sv")
+texture_pressed = ExtResource("6_ow1sv")
+
+[node name="Label" type="Label" parent="." unique_id=810063991]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 122.0
+offset_right = 122.0
+offset_bottom = 209.0
+theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549, 1)
+theme_override_font_sizes/font_size = 30
+text = "开始游戏
+"
+
+[connection signal="button_down" from="TextureButton" to="." method="_on_Button_pressed"]

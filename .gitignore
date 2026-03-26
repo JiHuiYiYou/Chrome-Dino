@@ -1,0 +1,6 @@
+# git--ignore Godot 4.x
+*.import
+*.remap
+.godot/
+export.cfg
+export_presets.cfg
