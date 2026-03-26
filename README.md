@@ -36,19 +36,19 @@ layer.Autoscroll = new Vector2(currentSpeed, 0);
 
 ### 节点结构
 
-World (Node2D)
-├── ParallaxRoot (Node2D)
-│   ├── Parallax2D (远景)
-│   │   ├── Sprite2D
-│   │   └── ParallaxLayerConfig (Node)
-│   ├── Parallax2D2 (中景)
-│   │   ├── Sprite2D
-│   │   └── ParallaxLayerConfig
-│   └── ...
-├── Player (CharacterBody2D)
-│   ├── Sprite2D
-│   └── AnimationPlayer
-└── WorldManager (Node)
+- World (Node2D)
+- ├── ParallaxRoot (Node2D)
+- │   ├── Parallax2D (远景)
+- │   │   ├── Sprite2D
+- │   │   └── ParallaxLayerConfig (Node)
+- │   ├── Parallax2D2 (中景)
+- │   │   ├── Sprite2D
+- │   │   └── ParallaxLayerConfig
+- │   └── ...
+- ├── Player (CharacterBody2D)
+- │   ├── Sprite2D
+- │   └── AnimationPlayer
+- └── WorldManager (Node)
 
 
 ## 🚀 如何运行
