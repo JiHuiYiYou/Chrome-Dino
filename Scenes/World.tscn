@@ -91,36 +91,6 @@ shape = SubResource("RectangleShape2D_p70al")
 [node name="Player" parent="." unique_id=1130559924 instance=ExtResource("6_45d1s")]
 position = Vector2(269, -260)
 
-[node name="ObstaclePackage" type="Node" parent="." unique_id=933601261]
-
-[node name="TimerObstacle" type="Timer" parent="ObstaclePackage" unique_id=860642194]
-script = ExtResource("1_7yo87")
-CherryScene = ExtResource("7_y7y61")
-MinCherryInterval = 0.0
-MaxCherryInterval = 20.0
-PosX = 1186.0
-PosY = 121.0
-
-[node name="TimerObstacle2" type="Timer" parent="ObstaclePackage" unique_id=1217139289]
-script = ExtResource("1_7yo87")
-CherryScene = ExtResource("12_op4cu")
-MinCherryInterval = 5.0
-MaxCherryInterval = 15.0
-
-[node name="TimerObstacle3" type="Timer" parent="ObstaclePackage" unique_id=317099700]
-script = ExtResource("1_7yo87")
-CherryScene = ExtResource("13_8l3nt")
-MinCherryInterval = 3.0
-MaxCherryInterval = 17.0
-PosX = 1595.0
-PosY = 426.0
-
-[node name="TimerBat" type="Timer" parent="ObstaclePackage" unique_id=1203790372]
-script = ExtResource("14_8l3nt")
-CherryScene = ExtResource("15_kwl8l")
-MinCherryInterval = 0.0
-MaxCherryInterval = 50.0
-
 [node name="UI" type="Node" parent="." unique_id=816687873]
 
 [node name="MainHUD" type="CanvasLayer" parent="UI" unique_id=1038694011]
@@ -186,6 +156,18 @@ texture = ExtResource("19_r0dna")
 
 [node name="Node" type="Node" parent="." unique_id=1072286302]
 script = ExtResource("8_q2d71")
+
+[node name="TimerBat" type="Timer" parent="." unique_id=392677548]
+script = ExtResource("14_8l3nt")
+CherryScene = ExtResource("15_kwl8l")
+MinCherryInterval = 5.0
+MaxCherryInterval = 15.0
+
+[node name="TimerObstacle" type="Timer" parent="." unique_id=122474355]
+script = ExtResource("1_7yo87")
+ObstacleScenes = Array[PackedScene]([ExtResource("7_y7y61"), ExtResource("12_op4cu"), ExtResource("13_8l3nt")])
+MinInterval = 2.0
+MaxInterval = 7.0
 
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="." method="_on_Button_pressed"]
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="Node" method="_EnterTree"]

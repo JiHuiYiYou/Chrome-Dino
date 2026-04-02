@@ -7,16 +7,17 @@
 size = Vector2(39.298244, 48)
 
 [node name="Rock3" type="Area2D" unique_id=383390602]
-position = Vector2(49, 25)
+position = Vector2(-40.999996, 12)
 scale = Vector2(1.71, 1.71)
 script = ExtResource("1_l6mld")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=997331139]
+position = Vector2(-24.309946, -20.622807)
 texture = ExtResource("2_xvgnf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1672374470]
-position = Vector2(0.35087776, 0)
+position = Vector2(-23.959068, -20.622807)
 shape = SubResource("RectangleShape2D_rkh3q")
 
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEnter"]
