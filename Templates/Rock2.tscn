@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ttpeoyfbtbpg"]
+
+[ext_resource type="Script" uid="uid://bcfbtivmparfv" path="res://Scripts/Obstacle.cs" id="1_3pfmn"]
+[ext_resource type="Texture2D" uid="uid://bbi5cghwcb0bd" path="res://Assets/Environments/SunnyLand/Props/rock.png" id="2_6gh45"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eehr0"]
+size = Vector2(57, 48)
+
+[node name="Rock2" type="Area2D" unique_id=383390602]
+script = ExtResource("1_3pfmn")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=878864819]
+scale = Vector2(3.785, 3.785)
+texture = ExtResource("2_6gh45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=882593780]
+position = Vector2(-8.5, 0)
+shape = SubResource("RectangleShape2D_eehr0")
+
+[connection signal="body_entered" from="." to="." method="OnPlayerBodyEnter"]

@@ -2,10 +2,29 @@
 
 [ext_resource type="Texture2D" uid="uid://dw8xllfakrtpw" path="res://Assets/Characters/Players/Squirrel/jump/spritesheet.png" id="1_j6awe"]
 [ext_resource type="Script" uid="uid://dxol2ujutdrqg" path="res://Scripts/Player.cs" id="1_tltr5"]
+[ext_resource type="Texture2D" uid="uid://qysdnlhtdd0a" path="res://Assets/Props Items and VFX/enemy-death 2/spritesheet.png" id="2_652mq"]
+[ext_resource type="Texture2D" uid="uid://dg4iybqh6bf2c" path="res://Assets/Characters/Players/Squirrel/crouch/spritesheet.png" id="2_n178h"]
 [ext_resource type="Texture2D" uid="uid://dda3vv8ylwqrk" path="res://Assets/Characters/Players/Squirrel/run/spritesheets.png" id="2_tltr5"]
+[ext_resource type="Texture2D" uid="uid://bj0a8dibjt5p2" path="res://Assets/Characters/Players/Squirrel/hurt/spritesheet.png" id="3_652mq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6awe"]
-size = Vector2(149, 77)
+size = Vector2(56, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ailp"]
+atlas = ExtResource("2_n178h")
+region = Rect2(0, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6jpa"]
+atlas = ExtResource("2_n178h")
+region = Rect2(90, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fii7"]
+atlas = ExtResource("3_652mq")
+region = Rect2(0, 0, 90, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvyh6"]
+atlas = ExtResource("3_652mq")
+region = Rect2(90, 0, 90, 58)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88hry"]
 atlas = ExtResource("1_j6awe")
@@ -49,15 +68,27 @@ region = Rect2(450, 0, 90, 58)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5ailp"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ailp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6jpa")
+}],
 "loop": true,
 "name": &"Crouch",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fii7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvyh6")
+}],
+"loop": false,
 "name": &"Death",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -74,7 +105,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Jump",
-"speed": 4.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -100,18 +131,67 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qbwl"]
+atlas = ExtResource("2_652mq")
+region = Rect2(0, 0, 28, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxawq"]
+atlas = ExtResource("2_652mq")
+region = Rect2(28, 0, 28, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_heyyl"]
+atlas = ExtResource("2_652mq")
+region = Rect2(56, 0, 28, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljp7o"]
+atlas = ExtResource("2_652mq")
+region = Rect2(84, 0, 28, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pdow6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qbwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxawq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_heyyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljp7o")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=1130559924]
-position = Vector2(415, 169)
+z_index = 2
+position = Vector2(440, 171)
 script = ExtResource("1_tltr5")
+JumpVelocity = -1000.0
+Gravity = 2500.0
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1805687943]
-position = Vector2(-21.5, 20.5)
+position = Vector2(16, 20.5)
 shape = SubResource("RectangleShape2D_j6awe")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=916974548]
+position = Vector2(15, 1)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_5ailp")
-animation = &"Run"
+animation = &"Death"
 autoplay = "Run"
-frame_progress = 0.08454674
+
+[node name="Boom" type="AnimatedSprite2D" parent="." unique_id=471735142]
+position = Vector2(12.000007, 51.999992)
+scale = Vector2(5.857144, 1.8461536)
+sprite_frames = SubResource("SpriteFrames_pdow6")
+frame = 4
+frame_progress = 1.0

@@ -1,22 +1,44 @@
 [gd_scene format=3 uid="uid://cg1iesgy2n05q"]
 
+[ext_resource type="Script" uid="uid://du0axs001fleu" path="res://Scripts/ObstacleSpawner.cs" id="1_7yo87"]
+[ext_resource type="Script" uid="uid://2v5xshr2072" path="res://Scripts/World.cs" id="1_8l3nt"]
 [ext_resource type="Texture2D" uid="uid://y6jjlce0s6uv" path="res://Assets/Environments/Jungle/Layers/back.png" id="2_45d1s"]
 [ext_resource type="Script" uid="uid://c15koq36v34n5" path="res://Scripts/ParallaxController.cs" id="2_q2d71"]
 [ext_resource type="Texture2D" uid="uid://d1gsxl1xr55a1" path="res://Assets/Environments/SunnyLand/Props/tree.png" id="3_y7y61"]
 [ext_resource type="Texture2D" uid="uid://c24fpm0772851" path="res://Assets/Environments/Jungle/Layers/tileset.png" id="4_q2d71"]
 [ext_resource type="Texture2D" uid="uid://bmaewegx72wy8" path="res://Assets/Environments/SunnyLand/Props/bush.png" id="5_uo7di"]
+[ext_resource type="PackedScene" uid="uid://dr6xap4savddp" path="res://Templates/Player.tscn" id="6_45d1s"]
+[ext_resource type="PackedScene" uid="uid://c3bu3c35iy8l" path="res://Templates/Rock1.tscn" id="7_y7y61"]
+[ext_resource type="Script" uid="uid://cvui7bdlr16in" path="res://Scripts/Signals.cs" id="8_q2d71"]
+[ext_resource type="PackedScene" uid="uid://ttpeoyfbtbpg" path="res://Templates/Rock2.tscn" id="12_op4cu"]
+[ext_resource type="PackedScene" uid="uid://df3qevn21g4pd" path="res://Templates/Rock3.tscn" id="13_8l3nt"]
+[ext_resource type="Script" uid="uid://0enrc2gsujab" path="res://Scripts/BatSpawner.cs" id="14_8l3nt"]
+[ext_resource type="PackedScene" uid="uid://ieup037c55lg" path="res://Templates/Bat.tscn" id="15_kwl8l"]
+[ext_resource type="Script" uid="uid://cdips14oskpn7" path="res://Scripts/ScoreLabel.cs" id="15_xiqgv"]
+[ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="16_waglr"]
+[ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="17_rwt1y"]
+[ext_resource type="Script" uid="uid://3uldhf41irp4" path="res://Scripts/ButtonTryAgain.cs" id="18_mvfa8"]
+[ext_resource type="Texture2D" uid="uid://c0san1lp2mmpa" path="res://再来一次-removebg-preview.png" id="19_r0dna"]
 
-[node name="World" type="Node2D" unique_id=1895698693]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p70al"]
+size = Vector2(52.661076, 1129.4116)
+
+[node name="World" type="Node2D" unique_id=1895698693 node_paths=PackedStringArray("MainHUD", "GameOverPanel", "ScoreLabel")]
+script = ExtResource("1_8l3nt")
+MainHUD = NodePath("UI/MainHUD")
+GameOverPanel = NodePath("UI/GameOverPanel")
+ScoreLabel = NodePath("UI/MainHUD/Label")
 
 [node name="ParallaxRoot" type="Node2D" parent="." unique_id=911648223]
 position = Vector2(65.55, 0)
 script = ExtResource("2_q2d71")
-_accelerationFactor = 0.1
-_maxSpeedFactor = 11.0
+_accelerationFactor = 0.05
+_maxSpeedFactor = 3.5
+metadata/_edit_group_ = true
 
 [node name="Parallax2D" type="Parallax2D" parent="ParallaxRoot" unique_id=332740773]
 repeat_size = Vector2(225, 0)
-autoscroll = Vector2(-50, 0)
+autoscroll = Vector2(-100, 0)
 repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxRoot/Parallax2D" unique_id=1893978870]
@@ -27,7 +49,7 @@ centered = false
 
 [node name="Parallax2D2" type="Parallax2D" parent="ParallaxRoot" unique_id=1482702768]
 repeat_size = Vector2(450, 0)
-autoscroll = Vector2(-70, 0)
+autoscroll = Vector2(-140, 0)
 repeat_times = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxRoot/Parallax2D2" unique_id=973135102]
@@ -38,7 +60,7 @@ centered = false
 
 [node name="Parallax2D3" type="Parallax2D" parent="ParallaxRoot" unique_id=1953308521]
 repeat_size = Vector2(81, 0)
-autoscroll = Vector2(-100, 0)
+autoscroll = Vector2(-200, 0)
 repeat_times = 24
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxRoot/Parallax2D3" unique_id=925121985]
@@ -49,7 +71,7 @@ centered = false
 
 [node name="Parallax2D4" type="Parallax2D" parent="ParallaxRoot" unique_id=1958066134]
 repeat_size = Vector2(225, 0)
-autoscroll = Vector2(-125, 0)
+autoscroll = Vector2(-250, 0)
 repeat_times = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxRoot/Parallax2D4" unique_id=2111642060]
@@ -57,3 +79,115 @@ position = Vector2(297, 450)
 scale = Vector2(5.73913, 7.041429)
 texture = ExtResource("5_uo7di")
 centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1963285527]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=386937912]
+position = Vector2(620.99994, 508.00003)
+rotation = 1.5707964
+scale = Vector2(1.785, 1.785)
+shape = SubResource("RectangleShape2D_p70al")
+
+[node name="Player" parent="." unique_id=1130559924 instance=ExtResource("6_45d1s")]
+position = Vector2(269, -260)
+
+[node name="ObstaclePackage" type="Node" parent="." unique_id=933601261]
+
+[node name="TimerObstacle" type="Timer" parent="ObstaclePackage" unique_id=860642194]
+script = ExtResource("1_7yo87")
+CherryScene = ExtResource("7_y7y61")
+MinCherryInterval = 0.0
+MaxCherryInterval = 20.0
+PosX = 1186.0
+PosY = 121.0
+
+[node name="TimerObstacle2" type="Timer" parent="ObstaclePackage" unique_id=1217139289]
+script = ExtResource("1_7yo87")
+CherryScene = ExtResource("12_op4cu")
+MinCherryInterval = 5.0
+MaxCherryInterval = 15.0
+
+[node name="TimerObstacle3" type="Timer" parent="ObstaclePackage" unique_id=317099700]
+script = ExtResource("1_7yo87")
+CherryScene = ExtResource("13_8l3nt")
+MinCherryInterval = 3.0
+MaxCherryInterval = 17.0
+PosX = 1595.0
+PosY = 426.0
+
+[node name="TimerBat" type="Timer" parent="ObstaclePackage" unique_id=1203790372]
+script = ExtResource("14_8l3nt")
+CherryScene = ExtResource("15_kwl8l")
+MinCherryInterval = 0.0
+MaxCherryInterval = 50.0
+
+[node name="UI" type="Node" parent="." unique_id=816687873]
+
+[node name="MainHUD" type="CanvasLayer" parent="UI" unique_id=1038694011]
+
+[node name="Label" type="Label" parent="UI/MainHUD" unique_id=56217636]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+script = ExtResource("15_xiqgv")
+
+[node name="GameOverPanel" type="CanvasLayer" parent="UI" unique_id=369452617]
+
+[node name="TextureButton" type="TextureButton" parent="UI/GameOverPanel" unique_id=1870413969]
+offset_left = -201.0
+offset_top = 113.0
+offset_right = -184.96805
+offset_bottom = 130.70691
+scale = Vector2(21.644268, 3.7273579)
+texture_normal = ExtResource("16_waglr")
+texture_pressed = ExtResource("17_rwt1y")
+
+[node name="Label" type="Label" parent="UI/GameOverPanel" unique_id=1042270856]
+offset_left = 27.71
+offset_top = 122.0
+offset_right = 147.71017
+offset_bottom = 209.0
+theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549, 1)
+theme_override_font_sizes/font_size = 30
+text = "主页
+"
+
+[node name="Label2" type="Label" parent="UI/GameOverPanel" unique_id=1028792562]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -11.5
+offset_right = 44.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "GAME   	OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/GameOverPanel" unique_id=1458405859]
+offset_left = 536.0
+offset_top = 379.0
+offset_right = 640.0
+offset_bottom = 462.0
+script = ExtResource("18_mvfa8")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/GameOverPanel/Button" unique_id=1569082138]
+position = Vector2(-10.915, -1.665)
+texture = ExtResource("19_r0dna")
+
+[node name="Node" type="Node" parent="." unique_id=1072286302]
+script = ExtResource("8_q2d71")
+
+[connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="." method="_on_Button_pressed"]
+[connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="Node" method="_EnterTree"]
+[connection signal="button_down" from="UI/GameOverPanel/Button" to="UI/GameOverPanel/Button" method="_on_Button_pressed"]
+[connection signal="button_down" from="UI/GameOverPanel/Button" to="Node" method="_EnterTree"]

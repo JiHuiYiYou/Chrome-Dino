@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Main : Control
+public partial class ButtonTryAgain : Button
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -18,14 +18,6 @@ public partial class Main : Control
         {
             GD.Print(">>> 切换场景到 GameOver");
             GetTree().ChangeSceneToFile("res://Scenes/World.tscn");
-        }));
-	}
-	public void OnButtonQuitClick()
-	{
-		GetTree().CreateTimer(1.0f).Connect("timeout", Callable.From(() =>
-        {
-            GD.Print(">>> 退出游戏");
-            GetTree().Quit();
         }));
 	}
 }

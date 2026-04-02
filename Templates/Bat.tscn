@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ieup037c55lg"]
+
+[ext_resource type="Texture2D" uid="uid://puv00v005h18" path="res://Assets/Characters/Enemies and NPC/bat/bat-sheet.png" id="1_bb6ax"]
+[ext_resource type="Script" uid="uid://bh0avjg2burhn" path="res://Scripts/Bat.cs" id="1_v2foe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2foe"]
+size = Vector2(68, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g3y6"]
+atlas = ExtResource("1_bb6ax")
+region = Rect2(0, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0wu4"]
+atlas = ExtResource("1_bb6ax")
+region = Rect2(53, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jcq2"]
+atlas = ExtResource("1_bb6ax")
+region = Rect2(106, 0, 53, 57)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kkcu8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g3y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0wu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jcq2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bat" type="Area2D" unique_id=1115047353]
+script = ExtResource("1_v2foe")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1366347045]
+position = Vector2(9, -3.5)
+shape = SubResource("RectangleShape2D_v2foe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=280704727]
+position = Vector2(10, 2)
+scale = Vector2(1.995, 1.995)
+sprite_frames = SubResource("SpriteFrames_kkcu8")
+autoplay = "default"
+frame_progress = 0.6196945
+flip_h = true
+
+[connection signal="body_entered" from="." to="." method="OnPlayerBodyEnter"]

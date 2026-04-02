@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c3bu3c35iy8l"]
+
+[ext_resource type="Script" uid="uid://bcfbtivmparfv" path="res://Scripts/Obstacle.cs" id="1_qie67"]
+[ext_resource type="Texture2D" uid="uid://caqonkclqtbna" path="res://Assets/Environments/SunnyLand/Props/rock-1.png" id="1_xvtjy"]
+[ext_resource type="Texture2D" uid="uid://d3o8lund7go4u" path="res://2d素材/52974160ee468ab1c6.jpg" id="3_owthb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvtjy"]
+size = Vector2(31, 76)
+
+[node name="ObstacleRock" type="Area2D" unique_id=1027502891]
+script = ExtResource("1_qie67")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=424970749]
+position = Vector2(416.5, 298)
+shape = SubResource("RectangleShape2D_xvtjy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2061029039]
+z_index = 1
+position = Vector2(414.25, 297)
+scale = Vector2(1.915094, 1.5849057)
+texture = ExtResource("1_xvtjy")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=914766568]
+visible = false
+position = Vector2(460, 282.00003)
+scale = Vector2(0.1, 0.1)
+skew = -0.34906584
+texture = ExtResource("3_owthb")
+
+[connection signal="body_entered" from="." to="." method="OnPlayerBodyEnter"]
