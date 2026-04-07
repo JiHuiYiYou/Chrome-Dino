@@ -1,6 +1,7 @@
 using Godot;
 using System.Text;
 using System;
+using System.Threading.Tasks;
 
 public partial class ScoreLabel : Label
 {
@@ -10,9 +11,32 @@ public partial class ScoreLabel : Label
 
     [Export] public int BestScore = 0;
     [Export] public int CurrentScore = 0;
-
+    // 文档1（ScoreLabel.cs）中修改myPlayerName的初始化
+    private string myPlayerName;
     public override void _Ready()
     {
+        // 先检查文件是否存在且内容有效
+        if (FileAccess.FileExists("user://player_name.cfg"))
+        {
+            string fileContent = FileAccess.GetFileAsString("user://player_name.cfg").Trim();
+            // 若文件内容是结构化配置（如含[Player]段），需提取名字（此处以你提供的错误内容为例）
+            if (fileContent.Contains("Name=\""))
+            {
+                int start = fileContent.IndexOf("Name=\"") + 6;
+                int end = fileContent.IndexOf("\"", start);
+                myPlayerName = fileContent.Substring(start, end - start);
+            }
+            else
+            {
+                myPlayerName = fileContent; // 若文件是纯名字，直接使用
+            }
+        }
+        else
+        {
+            myPlayerName = "Anonymous"; // 文件不存在时用默认名
+        }
+        GD.Print("玩家\"" + myPlayerName + "\"欢迎回来");
+        // 后续逻辑不变...
         BestScore = LoadBestScore();
         UpdateText();
     }
@@ -23,27 +47,16 @@ public partial class ScoreLabel : Label
         UpdateText();
     }
 
-    public void SetBest(int value)
+    public async Task SetBest(int value)
     {
         if (value > BestScore)
         {
             BestScore = value;
             SaveBestScore();
-            UploadScore(GetPlayerName(), BestScore);
+            await ScoreSender.Instance.AddScore(myPlayerName, BestScore);
         }
     }
 
-    private string GetPlayerName()
-    {
-        // 从配置加载玩家名称
-        var config = new ConfigFile();
-        Error err = config.Load("user://player_name.cfg");
-        if (err == Error.Ok)
-        {
-            return (string)config.GetValue("Player", "Name", "Player");
-        }
-        return "Player";
-    }
 
     private void SaveBestScore()
     {
@@ -72,37 +85,6 @@ public partial class ScoreLabel : Label
     {
         Text = $"HI  {BestScore:D5}  {CurrentScore:D5}";
     }
-
-    private void UploadScore(string playerName, int score)
-    {
-        var http = new HttpRequest();
-        AddChild(http);
-
-        http.RequestCompleted += (request, response_code, headers, body) =>
-        {
-            if (response_code == 200)
-            {
-                string response = Encoding.UTF8.GetString(body);
-                GD.Print("上传成功! 服务器响应: " + response);
-            }
-            else
-            {
-                GD.PrintErr($"上传失败! 响应码: {response_code}");
-                if (body != null)
-                    GD.PrintErr("错误详情: " + Encoding.UTF8.GetString(body));
-            }
-            this.CallDeferred(() => http.QueueFree());
-        };
-
-        string encodedName = Uri.EscapeDataString(playerName);
-        string url = $"http://dreamlo.com/lb/{DREAMLO_PRIVATE_KEY}/add/{encodedName}/{score}";
-        
-        GD.Print($"上传分数: {playerName} - {score}");
-        GD.Print($"URL: {url}");
-        
-        http.Get(url);
-    }
-
     private void CallDeferred(Action value)
     {
         throw new NotImplementedException();

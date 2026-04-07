@@ -44,7 +44,7 @@ public partial class World : Node2D
             ScoreLabel.SetCurrent(_currentScore);
         }
     }
-	private void OnPlayerDied()
+	private async void OnPlayerDied()
 	{
 		GD.Print("🎮 World: 玩家死亡信号执行");
 		if (GameOverPanel != null)
@@ -52,7 +52,7 @@ public partial class World : Node2D
 			GameOverPanel.Visible = true;
 			GameOverPanel.ProcessMode = ProcessModeEnum.Always;
 		}
-		ScoreLabel.SetBest(_currentScore);
+		await ScoreLabel.SetBest(_currentScore);
 		_isGameOver = true;
 	}
 	public void _on_Button_pressed()
