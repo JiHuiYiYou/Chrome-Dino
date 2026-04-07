@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dda3vv8ylwqrk" path="res://Assets/Characters/Players/Squirrel/run/spritesheets.png" id="5_3amdw"]
 [ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="6_ow1sv"]
 [ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="7_ow1sv"]
+[ext_resource type="Script" uid="uid://byodsynfwoyvm" path="res://Scripts/ButtonChangeName.cs" id="9_ynf5e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1xcnr"]
 atlas = ExtResource("5_3amdw")
@@ -182,5 +183,19 @@ theme_override_font_sizes/font_size = 30
 text = "排行榜
 "
 
+[node name="ButtonChangeName" type="Button" parent="." unique_id=1317511474]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+alignment = 2
+script = ExtResource("9_ynf5e")
+
 [connection signal="button_down" from="TextureButton" to="." method="_on_Button_pressed"]
 [connection signal="button_down" from="TextureButton2" to="." method="OnButtonQuitClick"]
+[connection signal="button_down" from="TextureButton3" to="." method="OnButtonListClick"]
+[connection signal="button_down" from="ButtonChangeName" to="ButtonChangeName" method="OnButtonChangeNameClick"]

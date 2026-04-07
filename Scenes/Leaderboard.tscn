@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b4y2mdwj8b25k"]
+
+[ext_resource type="Script" uid="uid://lyly65an3hxx" path="res://Scripts/LeaderboardUI.cs" id="1_xvobe"]
+[ext_resource type="Texture2D" uid="uid://dl444vv8cx3xb" path="res://Assets/Environments/Jungle/preview.png" id="2_ldouh"]
+[ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="3_67k4m"]
+[ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="4_r3gmb"]
+[ext_resource type="Script" uid="uid://d2ex3w40way7h" path="res://Scripts/TextureButtonReturn.cs" id="5_ep5dy"]
+
+[node name="Node" type="Node" unique_id=1569115631]
+
+[node name="LeaderBoardUI" type="Control" parent="." unique_id=578019941]
+z_index = 1
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_xvobe")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1874579624]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.8799995, 2.7199998)
+texture = ExtResource("2_ldouh")
+
+[node name="TextureButtonReturn" type="TextureButton" parent="." unique_id=876308124]
+offset_left = -201.0
+offset_top = 128.0
+offset_right = -184.96805
+offset_bottom = 145.70691
+scale = Vector2(21.644268, 3.7273579)
+texture_normal = ExtResource("3_67k4m")
+texture_pressed = ExtResource("4_r3gmb")
+script = ExtResource("5_ep5dy")
+
+[node name="Label" type="Label" parent="." unique_id=1391645402]
+offset_left = 40.0
+offset_top = 135.0
+offset_right = 160.0
+offset_bottom = 222.0
+theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549, 1)
+theme_override_font_sizes/font_size = 30
+text = "主页
+"
+
+[node name="Panel" type="Panel" parent="." unique_id=1979637790]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -200.0
+offset_right = 175.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="button_down" from="TextureButtonReturn" to="TextureButtonReturn" method="OnButtonPressed"]

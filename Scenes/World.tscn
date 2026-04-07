@@ -166,8 +166,14 @@ MaxCherryInterval = 15.0
 [node name="TimerObstacle" type="Timer" parent="." unique_id=122474355]
 script = ExtResource("1_7yo87")
 ObstacleScenes = Array[PackedScene]([ExtResource("7_y7y61"), ExtResource("12_op4cu"), ExtResource("13_8l3nt")])
-MinInterval = 2.0
-MaxInterval = 7.0
+
+[node name="Label" type="Label" parent="." unique_id=456456028]
+offset_left = 432.0
+offset_top = 598.0
+offset_right = 872.0
+offset_bottom = 633.0
+theme_override_font_sizes/font_size = 25
+text = "按上键跳跃 按下键加速下落"
 
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="." method="_on_Button_pressed"]
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="Node" method="_EnterTree"]

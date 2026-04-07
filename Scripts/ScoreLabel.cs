@@ -1,53 +1,61 @@
 using Godot;
+using System.Text;
+using System;
 
 public partial class ScoreLabel : Label
 {
     private const string SAVE_PATH = "user://best_score.cfg";
-    
+    // 使用你的 Private Key 提交分数
+    private const string DREAMLO_PRIVATE_KEY = "QBYmoAxc3EqRPZuh1X2QlQq-BQ35nN60uWEF48o_unww";
+
     [Export] public int BestScore = 0;
     [Export] public int CurrentScore = 0;
 
     public override void _Ready()
     {
-        // 启动时加载最佳分
         BestScore = LoadBestScore();
         UpdateText();
     }
 
-    // 设置当前分数（由 World 调用）
     public void SetCurrent(int value)
     {
         CurrentScore = value;
         UpdateText();
     }
 
-    // 设置最佳分数（由 World 在玩家死亡时调用）
     public void SetBest(int value)
     {
         if (value > BestScore)
         {
             BestScore = value;
             SaveBestScore();
+            UploadScore(GetPlayerName(), BestScore);
         }
     }
 
-    // 保存最佳分到配置文件
+    private string GetPlayerName()
+    {
+        // 从配置加载玩家名称
+        var config = new ConfigFile();
+        Error err = config.Load("user://player_name.cfg");
+        if (err == Error.Ok)
+        {
+            return (string)config.GetValue("Player", "Name", "Player");
+        }
+        return "Player";
+    }
+
     private void SaveBestScore()
     {
         var config = new ConfigFile();
         config.SetValue("Player", "BestScore", BestScore);
         Error err = config.Save(SAVE_PATH);
         if (err != Error.Ok)
-        {
             GD.PrintErr("保存失败: " + err);
-        }
         else
-        {
             GD.Print("最佳分数已保存: " + BestScore);
-        }
     }
 
-    // 从配置文件加载最佳分
     private int LoadBestScore()
     {
         var config = new ConfigFile();
@@ -60,10 +68,44 @@ public partial class ScoreLabel : Label
         return (int)config.GetValue("Player", "BestScore", 0);
     }
 
-    // 更新显示文本
     private void UpdateText()
     {
-        // 即使当前分 > 最佳分，也不立即更新最佳分（因为还没保存！）
         Text = $"HI  {BestScore:D5}  {CurrentScore:D5}";
     }
+
+    private void UploadScore(string playerName, int score)
+    {
+        var http = new HttpRequest();
+        AddChild(http);
+
+        http.RequestCompleted += (request, response_code, headers, body) =>
+        {
+            if (response_code == 200)
+            {
+                string response = Encoding.UTF8.GetString(body);
+                GD.Print("上传成功! 服务器响应: " + response);
+            }
+            else
+            {
+                GD.PrintErr($"上传失败! 响应码: {response_code}");
+                if (body != null)
+                    GD.PrintErr("错误详情: " + Encoding.UTF8.GetString(body));
+            }
+            this.CallDeferred(() => http.QueueFree());
+        };
+
+        string encodedName = Uri.EscapeDataString(playerName);
+        string url = $"http://dreamlo.com/lb/{DREAMLO_PRIVATE_KEY}/add/{encodedName}/{score}";
+        
+        GD.Print($"上传分数: {playerName} - {score}");
+        GD.Print($"URL: {url}");
+        
+        http.Get(url);
+    }
+
+    private void CallDeferred(Action value)
+    {
+        throw new NotImplementedException();
+    }
+
 }

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bdlhjoracvgq"]
+
+[ext_resource type="Script" uid="uid://cg05x2xoq3ur7" path="res://Scripts/PlayerNameInput.cs" id="1_04yin"]
+[ext_resource type="Texture2D" uid="uid://dl444vv8cx3xb" path="res://Assets/Environments/Jungle/preview.png" id="1_shmif"]
+[ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="2_ggpuo"]
+[ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="3_04yin"]
+
+[node name="PlayerNameInput" type="Control" unique_id=912216197 node_paths=PackedStringArray("NameInput")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_04yin")
+NameInput = NodePath("LineEdit")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1572638706]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.8799995, 2.7199998)
+texture = ExtResource("1_shmif")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=654087175]
+layout_mode = 0
+offset_left = -201.0
+offset_top = 128.0
+offset_right = -184.96805
+offset_bottom = 145.70691
+scale = Vector2(21.644268, 3.7273579)
+texture_normal = ExtResource("2_ggpuo")
+texture_pressed = ExtResource("3_04yin")
+
+[node name="Label" type="Label" parent="." unique_id=109186461]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 135.0
+offset_right = 160.0
+offset_bottom = 222.0
+theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549, 1)
+theme_override_font_sizes/font_size = 30
+text = "确认
+"
+
+[node name="LineEdit" type="LineEdit" parent="." unique_id=1455624160]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.15300001
+anchor_bottom = 0.16900001
+offset_left = 27.282043
+offset_top = 15.589737
+offset_right = 5.9106445
+offset_bottom = -13.498344
+placeholder_text = "输入玩家名字"
+max_length = 10
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=1671353590]
+layout_mode = 0
+offset_left = -201.0
+offset_top = 228.0
+offset_right = -184.96805
+offset_bottom = 245.70691
+scale = Vector2(21.644268, 3.7273579)
+texture_normal = ExtResource("2_ggpuo")
+texture_pressed = ExtResource("3_04yin")
+
+[node name="Label2" type="Label" parent="." unique_id=182170093]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 235.0
+offset_right = 160.0
+offset_bottom = 322.0
+theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549, 1)
+theme_override_font_sizes/font_size = 30
+text = "返回
+"
+
+[connection signal="button_down" from="TextureButton" to="." method="OnConfirmPressed"]
+[connection signal="button_down" from="TextureButton2" to="." method="OnQuitPressed"]
