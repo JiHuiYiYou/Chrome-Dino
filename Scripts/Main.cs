@@ -50,7 +50,7 @@ public partial class Main : Control
 	{
 		if (!FileAccess.FileExists("user://player_name.cfg"))
 		{
-			GetTree().ChangeSceneToFile("res://scenes/player_name_input.tscn");
+			GetTree().ChangeSceneToFile("res://Scenes/PlayerNameInput.tscn");
 		}
 	}
 }

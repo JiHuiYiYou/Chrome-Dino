@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Chrome Dino"
-config/description="让小狐狸跑的更远！"
+config/description="让小松鼠跑的更远！"
 run/main_scene="uid://xkf65ftquclq"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
