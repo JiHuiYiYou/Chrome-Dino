@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dg4iybqh6bf2c" path="res://Assets/Characters/Players/Squirrel/crouch/spritesheet.png" id="2_n178h"]
 [ext_resource type="Texture2D" uid="uid://dda3vv8ylwqrk" path="res://Assets/Characters/Players/Squirrel/run/spritesheets.png" id="2_tltr5"]
 [ext_resource type="Texture2D" uid="uid://bj0a8dibjt5p2" path="res://Assets/Characters/Players/Squirrel/hurt/spritesheet.png" id="3_652mq"]
+[ext_resource type="AudioStream" uid="uid://c2ue2q36npw3i" path="res://Music/Oxygen氧星球 - [♬]失败.mp3" id="7_b24bn"]
+[ext_resource type="AudioStream" uid="uid://c0lcvlk3781tu" path="res://Music/freesound_community-landing-on-grass-40650.mp3" id="8_k7357"]
+[ext_resource type="AudioStream" uid="uid://cmpo1gpuavbe7" path="res://Music/freesound_community-running-in-grass-6237.mp3" id="9_mncty"]
+[ext_resource type="AudioStream" uid="uid://b50u6npih2a3o" path="res://Music/dragon-studio-gust-of-wind-511325.mp3" id="10_sygor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6awe"]
 size = Vector2(56, 71)
@@ -195,3 +199,19 @@ scale = Vector2(5.857144, 1.8461536)
 sprite_frames = SubResource("SpriteFrames_pdow6")
 frame = 4
 frame_progress = 1.0
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1904851922]
+stream = ExtResource("7_b24bn")
+
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=913389636]
+stream = ExtResource("8_k7357")
+volume_db = -5.0
+
+[node name="Run" type="AudioStreamPlayer" parent="." unique_id=1240643628]
+stream = ExtResource("9_mncty")
+pitch_scale = 0.98
+parameters/looping = true
+
+[node name="Wind" type="AudioStreamPlayer" parent="." unique_id=2120180209]
+stream = ExtResource("10_sygor")
+volume_db = -10.0

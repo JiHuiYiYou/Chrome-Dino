@@ -7,7 +7,10 @@ public partial class World : Node2D
 	[Export] public CanvasLayer GameOverPanel;
 	[Export] public ScoreLabel ScoreLabel;
     [Export] public float BaseScorePerSecond = 10;
-
+	[Export]
+	AudioStreamPlayer audioStreamPlayerGameOver;
+	[Export]
+	AudioStreamPlayer hit;
     private float _elapsed;
     private int _currentScore;
 	private bool _isGameOver = false;
@@ -47,6 +50,8 @@ public partial class World : Node2D
 	private async void OnPlayerDied()
 	{
 		GD.Print("🎮 World: 玩家死亡信号执行");
+		hit.Play();
+		audioStreamPlayerGameOver.Stop();
 		if (GameOverPanel != null)
 		{
 			GameOverPanel.Visible = true;

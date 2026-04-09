@@ -6,13 +6,31 @@ using System.Threading.Tasks;
 
 public partial class LeaderboardUI : Control
 {
-    private string myPlayerName = FileAccess.GetFileAsString("user://player_name.cfg");
+    private string myPlayerName;
     
     private static readonly System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
     private Label myRankLabel;  // 自己的排名Label
     
     public override async void _Ready()
     {
+        if (FileAccess.FileExists("user://player_name.cfg"))
+        {
+            string fileContent = FileAccess.GetFileAsString("user://player_name.cfg").Trim();
+            if (fileContent.Contains("Name=\""))
+            {
+                int start = fileContent.IndexOf("Name=\"") + 6;
+                int end = fileContent.IndexOf("\"", start);
+                myPlayerName = fileContent.Substring(start, end - start); // 正确提取名字
+            }
+            else
+            {
+                myPlayerName = fileContent; // 纯名字直接使用
+            }
+        }
+        else
+        {
+            myPlayerName = "Anonymous"; // 默认名
+        }
         CreateUI();
         await LoadAndShowData();
     }

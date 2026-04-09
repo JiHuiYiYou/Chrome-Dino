@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="3_67k4m"]
 [ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="4_r3gmb"]
 [ext_resource type="Script" uid="uid://d2ex3w40way7h" path="res://Scripts/TextureButtonReturn.cs" id="5_ep5dy"]
+[ext_resource type="AudioStream" uid="uid://bsnvmjbni6064" path="res://Music/小k橘子 - 扫货通行证.mp3" id="6_67k4m"]
 
 [node name="Node" type="Node" unique_id=1569115631]
 
 [node name="LeaderBoardUI" type="Control" parent="." unique_id=578019941]
 z_index = 1
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource("1_xvobe")
@@ -53,5 +55,10 @@ offset_right = 175.0
 offset_bottom = 140.4997
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=543757954]
+stream = ExtResource("6_67k4m")
+autoplay = true
+parameters/looping = true
 
 [connection signal="button_down" from="TextureButtonReturn" to="TextureButtonReturn" method="OnButtonPressed"]

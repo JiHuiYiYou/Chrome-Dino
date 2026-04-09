@@ -19,15 +19,19 @@
 [ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="17_rwt1y"]
 [ext_resource type="Script" uid="uid://3uldhf41irp4" path="res://Scripts/ButtonTryAgain.cs" id="18_mvfa8"]
 [ext_resource type="Texture2D" uid="uid://c0san1lp2mmpa" path="res://再来一次-removebg-preview.png" id="19_r0dna"]
+[ext_resource type="AudioStream" uid="uid://b8bpxjcyp8gks" path="res://Music/Oxygen氧星球 - [♬]游戏中.mp3" id="20_r0dna"]
+[ext_resource type="AudioStream" uid="uid://c7kjwloqnwg4c" path="res://Music/u_xjrmmgxfru-hit-rock-02-266304.mp3" id="21_b5aes"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p70al"]
 size = Vector2(52.661076, 1129.4116)
 
-[node name="World" type="Node2D" unique_id=1895698693 node_paths=PackedStringArray("MainHUD", "GameOverPanel", "ScoreLabel")]
+[node name="World" type="Node2D" unique_id=1895698693 node_paths=PackedStringArray("MainHUD", "GameOverPanel", "ScoreLabel", "audioStreamPlayerGameOver", "hit")]
 script = ExtResource("1_8l3nt")
 MainHUD = NodePath("UI/MainHUD")
 GameOverPanel = NodePath("UI/GameOverPanel")
 ScoreLabel = NodePath("UI/MainHUD/Label")
+audioStreamPlayerGameOver = NodePath("AudioStreamPlayer")
+hit = NodePath("AudioStreamPlayer2")
 
 [node name="ParallaxRoot" type="Node2D" parent="." unique_id=911648223]
 position = Vector2(65.55, 0)
@@ -160,12 +164,13 @@ script = ExtResource("8_q2d71")
 [node name="TimerBat" type="Timer" parent="." unique_id=392677548]
 script = ExtResource("14_8l3nt")
 CherryScene = ExtResource("15_kwl8l")
-MinCherryInterval = 5.0
+MinCherryInterval = 8.0
 MaxCherryInterval = 15.0
 
 [node name="TimerObstacle" type="Timer" parent="." unique_id=122474355]
 script = ExtResource("1_7yo87")
 ObstacleScenes = Array[PackedScene]([ExtResource("7_y7y61"), ExtResource("12_op4cu"), ExtResource("13_8l3nt")])
+MaxInterval = 3.0
 
 [node name="Label" type="Label" parent="." unique_id=456456028]
 offset_left = 432.0
@@ -174,6 +179,14 @@ offset_right = 872.0
 offset_bottom = 633.0
 theme_override_font_sizes/font_size = 25
 text = "按上键跳跃 按下键加速下落"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=679561401]
+stream = ExtResource("20_r0dna")
+autoplay = true
+parameters/looping = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1193549431]
+stream = ExtResource("21_b5aes")
 
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="." method="_on_Button_pressed"]
 [connection signal="button_down" from="UI/GameOverPanel/TextureButton" to="Node" method="_EnterTree"]

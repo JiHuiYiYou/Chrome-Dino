@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bcnbp3757yg1v"]
+
+[ext_resource type="Script" uid="uid://dlqsgulicijhj" path="res://Scripts/GlobalAudio.cs" id="1_8j0jh"]
+[ext_resource type="AudioStream" uid="uid://bukj0yjsrg2rk" path="res://Music/dragon-studio-button-press-382713.mp3" id="1_075ip"]
+
+[node name="GlobalAudioPlayer" type="Node" unique_id=1971735076]
+script = ExtResource("1_8j0jh")
+
+[node name="ass" type="AudioStreamPlayer" parent="." unique_id=1962805521]
+stream = ExtResource("1_075ip")

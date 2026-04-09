@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dl444vv8cx3xb" path="res://Assets/Environments/Jungle/preview.png" id="1_shmif"]
 [ext_resource type="Texture2D" uid="uid://ce42afjfr63ev" path="res://Assets/Environments/SunnyLand/Props/block.png" id="2_ggpuo"]
 [ext_resource type="Texture2D" uid="uid://lpcqmr1rjo1v" path="res://Assets/Environments/SunnyLand/Props/block-big.png" id="3_04yin"]
+[ext_resource type="AudioStream" uid="uid://bsnvmjbni6064" path="res://Music/小k橘子 - 扫货通行证.mp3" id="5_a7xls"]
 
 [node name="PlayerNameInput" type="Control" unique_id=912216197 node_paths=PackedStringArray("NameInput")]
 layout_mode = 3
@@ -75,6 +76,11 @@ theme_override_colors/font_shadow_color = Color(0.5647059, 0.3882353, 0.9372549,
 theme_override_font_sizes/font_size = 30
 text = "返回
 "
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=655327309]
+stream = ExtResource("5_a7xls")
+autoplay = true
+parameters/looping = true
 
 [connection signal="button_down" from="TextureButton" to="." method="OnConfirmPressed"]
 [connection signal="button_down" from="TextureButton2" to="." method="OnQuitPressed"]
