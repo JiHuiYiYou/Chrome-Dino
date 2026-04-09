@@ -36,6 +36,8 @@ public partial class Player : CharacterBody2D
     {
         if (!isAlive)
         {
+            audioStreamPlayerRun.Stop();
+            isRunningSoundPlaying = false;
             Velocity = new Vector2(0, 0);
             MoveAndSlide();
             AnimationControl();

@@ -31,7 +31,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_4jcq2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"fly",
 "speed": 5.0
 }]
 
@@ -47,8 +47,8 @@ shape = SubResource("RectangleShape2D_v2foe")
 position = Vector2(10, 2)
 scale = Vector2(1.995, 1.995)
 sprite_frames = SubResource("SpriteFrames_kkcu8")
-autoplay = "default"
-frame_progress = 0.6196945
+animation = &"fly"
+autoplay = "fly"
 flip_h = true
 
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEnter"]

@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Chrome Dino"
+config/description="让小狐狸跑的更远！"
 run/main_scene="uid://xkf65ftquclq"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/stretch_mode=3
+boot_splash/use_filter=false
+boot_splash/image="uid://b8vuniwy45auc"
+config/icon="uid://b8vuniwy45auc"
+config/windows_native_icon="res://4a6c348b-705b-4bff-ac1c-8bfce8ebdf7c-0.ico"
 
 [autoload]
 

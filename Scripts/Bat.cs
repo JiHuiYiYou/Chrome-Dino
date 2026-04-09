@@ -6,12 +6,14 @@ public partial class Bat : Area2D
     // 速度范围（都是负值，表示向左移动）
     private readonly float MaxSpeed = -800f;
     private readonly float MinSpeed = -400f;
+    private AnimatedSprite2D animatedSprite;
 
     // 每个 Bat 实例自己的固定速度
     private float _fixedSpeed;
 
     public override void _Ready()
     {
+        animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         // 只在初始化时随机一次！
         _fixedSpeed = (float)GD.RandRange(MinSpeed, MaxSpeed);
         
@@ -36,6 +38,8 @@ public partial class Bat : Area2D
         if (body.Name == "Player")
         {
             GD.Print("💥 Player hit a bat!");
+            _fixedSpeed=0; // 碰到玩家后停止移动
+            animatedSprite.Stop(); // 停止动画
 
             // 发射全局死亡信号
             Signals.Instance?.EmitSignal("PlayerDied");

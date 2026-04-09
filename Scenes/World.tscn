@@ -164,8 +164,8 @@ script = ExtResource("8_q2d71")
 [node name="TimerBat" type="Timer" parent="." unique_id=392677548]
 script = ExtResource("14_8l3nt")
 CherryScene = ExtResource("15_kwl8l")
-MinCherryInterval = 8.0
-MaxCherryInterval = 15.0
+MinCherryInterval = 30.0
+MaxCherryInterval = 70.0
 
 [node name="TimerObstacle" type="Timer" parent="." unique_id=122474355]
 script = ExtResource("1_7yo87")
